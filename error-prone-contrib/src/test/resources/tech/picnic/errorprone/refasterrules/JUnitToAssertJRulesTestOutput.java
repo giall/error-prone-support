@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.fail;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -179,5 +180,29 @@ final class JUnitToAssertJRulesTest implements RefasterRuleCollectionTestCase {
 
   void testAssertThatWithFailMessageSupplierIsInstanceOf() {
     assertThat(new Object()).withFailMessage(() -> "foo").isInstanceOf(Object.class);
+  }
+
+  void testAssertThatIsEqualTo() {
+    assertThat((short) 0).isEqualTo((short) 0);
+    assertThat((byte) 0).isEqualTo((byte) 0);
+    assertThat(0).isEqualTo(0);
+    assertThat(0L).isEqualTo(0L);
+    assertThat(0.0F).isEqualTo(0.0F);
+    assertThat(0.0).isEqualTo(0.0);
+    assertThat((char) 0).isEqualTo((char) 0);
+    assertThat(new Object()).isEqualTo(new Object());
+    assertThat("actual").isEqualTo("expected");
+  }
+
+  void testAssertThatIsEqualToWithMessage() {
+    assertThat((short) 0).withFailMessage("foo").isEqualTo((short) 0);
+    assertThat((byte) 0).withFailMessage("bar").isEqualTo((byte) 0);
+    assertThat(0).withFailMessage("baz").isEqualTo(0);
+    assertThat(0L).withFailMessage("qux").isEqualTo(0L);
+    assertThat(0.0F).withFailMessage("quux").isEqualTo(0.0F);
+    assertThat(0.0).withFailMessage("quuz").isEqualTo(0.0);
+    assertThat((char) 0).withFailMessage("corge").isEqualTo((char) 0);
+    assertThat(new Object()).withFailMessage("grault").isEqualTo(new Object());
+    assertThat("actual").withFailMessage("garply").isEqualTo("expected");
   }
 }

@@ -1,6 +1,7 @@
 package tech.picnic.errorprone.refasterrules;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -169,5 +170,29 @@ final class JUnitToAssertJRulesTest implements RefasterRuleCollectionTestCase {
 
   void testAssertThatWithFailMessageSupplierIsInstanceOf() {
     assertInstanceOf(Object.class, new Object(), () -> "foo");
+  }
+
+  void testAssertThatIsEqualTo() {
+    assertEquals((short) 0, (short) 0);
+    assertEquals((byte) 0, (byte) 0);
+    assertEquals(0, 0);
+    assertEquals(0L, 0L);
+    assertEquals(0.0F, 0.0F);
+    assertEquals(0.0, 0.0);
+    assertEquals((char) 0, (char) 0);
+    assertEquals(new Object(), new Object());
+    assertEquals("actual", "expected");
+  }
+
+  void testAssertThatIsEqualToWithMessage() {
+    assertEquals((short) 0, (short) 0, "foo");
+    assertEquals((byte) 0, (byte) 0, "bar");
+    assertEquals(0, 0, "baz");
+    assertEquals(0L, 0L, "qux");
+    assertEquals(0.0F, 0.0F, "quux");
+    assertEquals(0.0, 0.0, "quuz");
+    assertEquals((char) 0, (char) 0, "corge");
+    assertEquals(new Object(), new Object(), "grault");
+    assertEquals("actual", "expected", "garply");
   }
 }

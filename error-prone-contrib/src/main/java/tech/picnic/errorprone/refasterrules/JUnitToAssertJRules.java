@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.fail;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -21,6 +22,7 @@ import com.google.errorprone.annotations.DoNotCall;
 import com.google.errorprone.refaster.annotation.AfterTemplate;
 import com.google.errorprone.refaster.annotation.BeforeTemplate;
 import com.google.errorprone.refaster.annotation.UseImportPolicy;
+import java.util.Map;
 import java.util.function.Supplier;
 import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 import org.junit.jupiter.api.Assertions;
@@ -516,6 +518,102 @@ final class JUnitToAssertJRules {
     @UseImportPolicy(STATIC_IMPORT_ALWAYS)
     void after(Object actual, Class<T> clazz, Supplier<String> supplier) {
       assertThat(actual).withFailMessage(supplier).isInstanceOf(clazz);
+    }
+  }
+
+  static final class AssertThatIsEqualTo {
+    @BeforeTemplate
+    void before(short actual, short expected) {
+      assertEquals(actual, expected);
+    }
+
+    @BeforeTemplate
+    void before(byte actual, byte expected) {
+      assertEquals(actual, expected);
+    }
+
+    @BeforeTemplate
+    void before(int actual, int expected) {
+      assertEquals(actual, expected);
+    }
+
+    @BeforeTemplate
+    void before(long actual, long expected) {
+      assertEquals(actual, expected);
+    }
+
+    @BeforeTemplate
+    void before(float actual, float expected) {
+      assertEquals(actual, expected);
+    }
+
+    @BeforeTemplate
+    void before(double actual, double expected) {
+      assertEquals(actual, expected);
+    }
+
+    @BeforeTemplate
+    void before(char actual, char expected) {
+      assertEquals(actual, expected);
+    }
+
+    @BeforeTemplate
+    void before(Object actual, Object expected) {
+      assertEquals(actual, expected);
+    }
+
+    @AfterTemplate
+    @UseImportPolicy(STATIC_IMPORT_ALWAYS)
+    void after(Object actual, Object expected) {
+      assertThat(actual).isEqualTo(expected);
+    }
+  }
+
+  static final class AssertThatIsEqualToWithMessage {
+    @BeforeTemplate
+    void before(short actual, short expected, String message) {
+      assertEquals(actual, expected, message);
+    }
+
+    @BeforeTemplate
+    void before(byte actual, byte expected, String message) {
+      assertEquals(actual, expected, message);
+    }
+
+    @BeforeTemplate
+    void before(int actual, int expected, String message) {
+      assertEquals(actual, expected, message);
+    }
+
+    @BeforeTemplate
+    void before(long actual, long expected, String message) {
+      assertEquals(actual, expected, message);
+    }
+
+    @BeforeTemplate
+    void before(float actual, float expected, String message) {
+      assertEquals(actual, expected, message);
+    }
+
+    @BeforeTemplate
+    void before(double actual, double expected, String message) {
+      assertEquals(actual, expected, message);
+    }
+
+    @BeforeTemplate
+    void before(char actual, char expected, String message) {
+      assertEquals(actual, expected, message);
+    }
+
+    @BeforeTemplate
+    void before(Object actual, Object expected, String message) {
+      assertEquals(actual, expected, message);
+    }
+
+    @AfterTemplate
+    @UseImportPolicy(STATIC_IMPORT_ALWAYS)
+    void after(Object actual, Object expected, String message) {
+      assertThat(actual).withFailMessage(message).isEqualTo(expected);
     }
   }
 }
