@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNotSame;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -204,5 +205,53 @@ final class JUnitToAssertJRulesTest implements RefasterRuleCollectionTestCase {
     assertThat((char) 0).withFailMessage("corge").isEqualTo((char) 0);
     assertThat(new Object()).withFailMessage("grault").isEqualTo(new Object());
     assertThat("actual").withFailMessage("garply").isEqualTo("expected");
+  }
+
+  void testAssertThatIsEqualToWithMessageSupplier() {
+    assertThat((short) 0).withFailMessage(() -> "foo").isEqualTo((short) 0);
+    assertThat((byte) 0).withFailMessage(() -> "bar").isEqualTo((byte) 0);
+    assertThat(0).withFailMessage(() -> "baz").isEqualTo(0);
+    assertThat(0L).withFailMessage(() -> "qux").isEqualTo(0L);
+    assertThat(0.0F).withFailMessage(() -> "quux").isEqualTo(0.0F);
+    assertThat(0.0).withFailMessage(() -> "quuz").isEqualTo(0.0);
+    assertThat((char) 0).withFailMessage(() -> "corge").isEqualTo((char) 0);
+    assertThat(new Object()).withFailMessage(() -> "grault").isEqualTo(new Object());
+    assertThat("actual").withFailMessage(() -> "garply").isEqualTo("expected");
+  }
+
+  void testAssertThatIsNotEqualTo() {
+    assertThat((short) 0).isNotEqualTo((short) 0);
+    assertThat((byte) 0).isNotEqualTo((byte) 0);
+    assertThat(0).isNotEqualTo(0);
+    assertThat(0L).isNotEqualTo(0L);
+    assertThat(0.0F).isNotEqualTo(0.0F);
+    assertThat(0.0).isNotEqualTo(0.0);
+    assertThat((char) 0).isNotEqualTo((char) 0);
+    assertThat(new Object()).isNotEqualTo(new Object());
+    assertThat("actual").isNotEqualTo("expected");
+  }
+
+  void testAssertThatIsNotEqualToWithMessage() {
+    assertThat((short) 0).withFailMessage("foo").isNotEqualTo((short) 0);
+    assertThat((byte) 0).withFailMessage("bar").isNotEqualTo((byte) 0);
+    assertThat(0).withFailMessage("baz").isNotEqualTo(0);
+    assertThat(0L).withFailMessage("qux").isNotEqualTo(0L);
+    assertThat(0.0F).withFailMessage("quux").isNotEqualTo(0.0F);
+    assertThat(0.0).withFailMessage("quuz").isNotEqualTo(0.0);
+    assertThat((char) 0).withFailMessage("corge").isNotEqualTo((char) 0);
+    assertThat(new Object()).withFailMessage("grault").isNotEqualTo(new Object());
+    assertThat("actual").withFailMessage("garply").isNotEqualTo("expected");
+  }
+
+  void testAssertThatIsNotEqualToWithMessageSupplier() {
+    assertThat((short) 0).withFailMessage(() -> "foo").isNotEqualTo((short) 0);
+    assertThat((byte) 0).withFailMessage(() -> "bar").isNotEqualTo((byte) 0);
+    assertThat(0).withFailMessage(() -> "baz").isNotEqualTo(0);
+    assertThat(0L).withFailMessage(() -> "qux").isNotEqualTo(0L);
+    assertThat(0.0F).withFailMessage(() -> "quux").isNotEqualTo(0.0F);
+    assertThat(0.0).withFailMessage(() -> "quuz").isNotEqualTo(0.0);
+    assertThat((char) 0).withFailMessage(() -> "corge").isNotEqualTo((char) 0);
+    assertThat(new Object()).withFailMessage(() -> "grault").isNotEqualTo(new Object());
+    assertThat("actual").withFailMessage(() -> "garply").isNotEqualTo("expected");
   }
 }

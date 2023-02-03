@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNotSame;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -614,6 +615,198 @@ final class JUnitToAssertJRules {
     @UseImportPolicy(STATIC_IMPORT_ALWAYS)
     void after(Object actual, Object expected, String message) {
       assertThat(actual).withFailMessage(message).isEqualTo(expected);
+    }
+  }
+
+  static final class AssertThatIsEqualToWithMessageSupplier {
+    @BeforeTemplate
+    void before(short actual, short expected, Supplier<String> supplier) {
+      assertEquals(actual, expected, supplier);
+    }
+
+    @BeforeTemplate
+    void before(byte actual, byte expected, Supplier<String> supplier) {
+      assertEquals(actual, expected, supplier);
+    }
+
+    @BeforeTemplate
+    void before(int actual, int expected, Supplier<String> supplier) {
+      assertEquals(actual, expected, supplier);
+    }
+
+    @BeforeTemplate
+    void before(long actual, long expected, Supplier<String> supplier) {
+      assertEquals(actual, expected, supplier);
+    }
+
+    @BeforeTemplate
+    void before(float actual, float expected, Supplier<String> supplier) {
+      assertEquals(actual, expected, supplier);
+    }
+
+    @BeforeTemplate
+    void before(double actual, double expected, Supplier<String> supplier) {
+      assertEquals(actual, expected, supplier);
+    }
+
+    @BeforeTemplate
+    void before(char actual, char expected, Supplier<String> supplier) {
+      assertEquals(actual, expected, supplier);
+    }
+
+    @BeforeTemplate
+    void before(Object actual, Object expected, Supplier<String> supplier) {
+      assertEquals(actual, expected, supplier);
+    }
+
+    @AfterTemplate
+    @UseImportPolicy(STATIC_IMPORT_ALWAYS)
+    void after(Object actual, Object expected, Supplier<String> supplier) {
+      assertThat(actual).withFailMessage(supplier).isEqualTo(expected);
+    }
+  }
+
+  static final class AssertThatIsNotEqualTo {
+    @BeforeTemplate
+    void before(short actual, short expected) {
+      assertNotEquals(actual, expected);
+    }
+
+    @BeforeTemplate
+    void before(byte actual, byte expected) {
+      assertNotEquals(actual, expected);
+    }
+
+    @BeforeTemplate
+    void before(int actual, int expected) {
+      assertNotEquals(actual, expected);
+    }
+
+    @BeforeTemplate
+    void before(long actual, long expected) {
+      assertNotEquals(actual, expected);
+    }
+
+    @BeforeTemplate
+    void before(float actual, float expected) {
+      assertNotEquals(actual, expected);
+    }
+
+    @BeforeTemplate
+    void before(double actual, double expected) {
+      assertNotEquals(actual, expected);
+    }
+
+    @BeforeTemplate
+    void before(char actual, char expected) {
+      assertNotEquals(actual, expected);
+    }
+
+    @BeforeTemplate
+    void before(Object actual, Object expected) {
+      assertNotEquals(actual, expected);
+    }
+
+    @AfterTemplate
+    @UseImportPolicy(STATIC_IMPORT_ALWAYS)
+    void after(Object actual, Object expected) {
+      assertThat(actual).isNotEqualTo(expected);
+    }
+  }
+
+  static final class AssertThatIsNotEqualToWithMessage {
+    @BeforeTemplate
+    void before(short actual, short expected, String message) {
+      assertNotEquals(actual, expected, message);
+    }
+
+    @BeforeTemplate
+    void before(byte actual, byte expected, String message) {
+      assertNotEquals(actual, expected, message);
+    }
+
+    @BeforeTemplate
+    void before(int actual, int expected, String message) {
+      assertNotEquals(actual, expected, message);
+    }
+
+    @BeforeTemplate
+    void before(long actual, long expected, String message) {
+      assertNotEquals(actual, expected, message);
+    }
+
+    @BeforeTemplate
+    void before(float actual, float expected, String message) {
+      assertNotEquals(actual, expected, message);
+    }
+
+    @BeforeTemplate
+    void before(double actual, double expected, String message) {
+      assertNotEquals(actual, expected, message);
+    }
+
+    @BeforeTemplate
+    void before(char actual, char expected, String message) {
+      assertNotEquals(actual, expected, message);
+    }
+
+    @BeforeTemplate
+    void before(Object actual, Object expected, String message) {
+      assertNotEquals(actual, expected, message);
+    }
+
+    @AfterTemplate
+    @UseImportPolicy(STATIC_IMPORT_ALWAYS)
+    void after(Object actual, Object expected, String message) {
+      assertThat(actual).withFailMessage(message).isNotEqualTo(expected);
+    }
+  }
+
+  static final class AssertThatIsNotEqualToWithMessageSupplier {
+    @BeforeTemplate
+    void before(short actual, short expected, Supplier<String> supplier) {
+      assertNotEquals(actual, expected, supplier);
+    }
+
+    @BeforeTemplate
+    void before(byte actual, byte expected, Supplier<String> supplier) {
+      assertNotEquals(actual, expected, supplier);
+    }
+
+    @BeforeTemplate
+    void before(int actual, int expected, Supplier<String> supplier) {
+      assertNotEquals(actual, expected, supplier);
+    }
+
+    @BeforeTemplate
+    void before(long actual, long expected, Supplier<String> supplier) {
+      assertNotEquals(actual, expected, supplier);
+    }
+
+    @BeforeTemplate
+    void before(float actual, float expected, Supplier<String> supplier) {
+      assertNotEquals(actual, expected, supplier);
+    }
+
+    @BeforeTemplate
+    void before(double actual, double expected, Supplier<String> supplier) {
+      assertNotEquals(actual, expected, supplier);
+    }
+
+    @BeforeTemplate
+    void before(char actual, char expected, Supplier<String> supplier) {
+      assertNotEquals(actual, expected, supplier);
+    }
+
+    @BeforeTemplate
+    void before(Object actual, Object expected, Supplier<String> supplier) {
+      assertNotEquals(actual, expected, supplier);
+    }
+
+    @AfterTemplate
+    @UseImportPolicy(STATIC_IMPORT_ALWAYS)
+    void after(Object actual, Object expected, Supplier<String> supplier) {
+      assertThat(actual).withFailMessage(supplier).isNotEqualTo(expected);
     }
   }
 }

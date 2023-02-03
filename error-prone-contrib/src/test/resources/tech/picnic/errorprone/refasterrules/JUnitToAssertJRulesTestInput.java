@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNotSame;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -194,5 +195,53 @@ final class JUnitToAssertJRulesTest implements RefasterRuleCollectionTestCase {
     assertEquals((char) 0, (char) 0, "corge");
     assertEquals(new Object(), new Object(), "grault");
     assertEquals("actual", "expected", "garply");
+  }
+
+  void testAssertThatIsEqualToWithMessageSupplier() {
+    assertEquals((short) 0, (short) 0, () -> "foo");
+    assertEquals((byte) 0, (byte) 0, () -> "bar");
+    assertEquals(0, 0, () -> "baz");
+    assertEquals(0L, 0L, () -> "qux");
+    assertEquals(0.0F, 0.0F, () -> "quux");
+    assertEquals(0.0, 0.0, () -> "quuz");
+    assertEquals((char) 0, (char) 0, () -> "corge");
+    assertEquals(new Object(), new Object(), () -> "grault");
+    assertEquals("actual", "expected", () -> "garply");
+  }
+
+  void testAssertThatIsNotEqualTo() {
+    assertNotEquals((short) 0, (short) 0);
+    assertNotEquals((byte) 0, (byte) 0);
+    assertNotEquals(0, 0);
+    assertNotEquals(0L, 0L);
+    assertNotEquals(0.0F, 0.0F);
+    assertNotEquals(0.0, 0.0);
+    assertNotEquals((char) 0, (char) 0);
+    assertNotEquals(new Object(), new Object());
+    assertNotEquals("actual", "expected");
+  }
+
+  void testAssertThatIsNotEqualToWithMessage() {
+    assertNotEquals((short) 0, (short) 0, "foo");
+    assertNotEquals((byte) 0, (byte) 0, "bar");
+    assertNotEquals(0, 0, "baz");
+    assertNotEquals(0L, 0L, "qux");
+    assertNotEquals(0.0F, 0.0F, "quux");
+    assertNotEquals(0.0, 0.0, "quuz");
+    assertNotEquals((char) 0, (char) 0, "corge");
+    assertNotEquals(new Object(), new Object(), "grault");
+    assertNotEquals("actual", "expected", "garply");
+  }
+
+  void testAssertThatIsNotEqualToWithMessageSupplier() {
+    assertNotEquals((short) 0, (short) 0, () -> "foo");
+    assertNotEquals((byte) 0, (byte) 0, () -> "bar");
+    assertNotEquals(0, 0, () -> "baz");
+    assertNotEquals(0L, 0L, () -> "qux");
+    assertNotEquals(0.0F, 0.0F, () -> "quux");
+    assertNotEquals(0.0, 0.0, () ->"quuz");
+    assertNotEquals((char) 0, (char) 0, () -> "corge");
+    assertNotEquals(new Object(), new Object(), () -> "grault");
+    assertNotEquals("actual", "expected", () ->"garply");
   }
 }
